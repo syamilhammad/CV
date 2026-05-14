@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYAMIL HAMMAD | Production Crew</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg-primary: #0a0a0d;
+        --bg-secondary: #12121a;
+        --bg-card: #1a1a24;
+        --accent: #ff3d3d;
+        --accent-2: #ff7a00;
+        --text-primary: #f5f5f7;
+        --text-secondary: #a1a1b5;
+        --border: #2a2a3a;
+    }
+    
+    * {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: 'Outfit', sans-serif;
+        overflow-x: hidden;
+    }
+    
+    h1, h2, h3, .heading {
+        font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    .gradient-text {
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .gradient-border {
+        position: relative;
+        background: var(--bg-card);
+        border-radius: 16px;
+    }
+    
+    .gradient-border::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        padding: 1px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .gradient-border:hover::before {
+        opacity: 1;
+    }
+    
+    .credit-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .credit-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+        box-shadow: 0 20px 40px rgba(255, 61, 61, 0.15);
+    }
+    
+    .nav-link {
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 100%;
+    }
+    
+    .photo-tile {
+        overflow: hidden;
+        border-radius: 16px;
+        position: relative;
+        aspect-ratio: 3/4;
+        background: var(--bg-secondary);
+    }
+    
+    .photo-tile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .photo-tile:hover img {
+        transform: scale(1.08);
+    }
+    
+    .photo-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(10,10,13,0.9) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .photo-tile:hover .photo-overlay {
+        opacity: 1;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-fade-in {
+        animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+    
+    [contenteditable]:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 8px;
+    }
+    
+    .glass-effect {
+        background: rgba(26, 26, 36, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .hero-bg {
+        background: 
+            radial-gradient(circle at 20% 50%, rgba(255, 61, 61, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255, 122, 0, 0.08) 0%, transparent 50%),
+            var(--bg-primary);
+    }
+    
+    .scroll-indicator {
+        animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(10px); }
+    }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 glass-effect">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                    <span class="text-lg font-bold">SH</span>
+                </div>
+                <span class="heading font-bold text-xl hidden sm:block">SYAMIL HAMMAD</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-white">About</a>
+                <a href="#reality" class="nav-link text-sm font-medium text-gray-300 hover:text-white">Credits</a>
+                <a href="#gallery" class="nav-link text-sm font-medium text-gray-300 hover:text-white">Gallery</a>
+                <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-white">Contact</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-[#12121a] border-t border-gray-800">
+        <div class="px-5 py-4 space-y-3">
+            <a href="#about" class="block py-2 text-gray-300">About</a>
+            <a href="#reality" class="block py-2 text-gray-300">Credits</a>
+            <a href="#gallery" class="block py-2 text-gray-300">Gallery</a>
+            <a href="#contact" class="block py-2 text-gray-300">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-bg min-h-screen flex items-center justify-center px-5 md:px-8 pt-24 pb-16">
+    <div class="max-w-7xl w-full">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div class="animate-fade-in">
+                <div class="inline-block mb-6">
+                    <span class="px-4 py-2 rounded-full text-xs font-semibold glass-effect border border-red-500/20">
+                        <i class="fas fa-circle text-red-500 text-[8px] mr-2 animate-pulse"></i>
+                        Available for Projects
+                    </span>
+                </div>
+                <h1 class="heading text-5xl md:text-7xl lg:text-8xl font-bold mb-4 leading-tight">
+                    SYAMIL<br><span class="gradient-text">HAMMAD</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-6 font-light">
+                    Freelance Production Crew
+                </p>
+                <p class="text-base md:text-lg text-gray-400 mb-8">
+                    Production • Lighting • Locations
+                </p>
+                <div class="flex flex-wrap gap-3 mb-10">
+                    <span class="px-4 py-2 rounded-lg bg-[#1a1a24] border border-gray-800 text-sm">
+                        <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>Malaysia-based
+                    </span>
+                    <span class="px-4 py-2 rounded-lg bg-[#1a1a24] border border-gray-800 text-sm">
+                        <i class="fas fa-globe text-orange-500 mr-2"></i>International Sets
+                    </span>
+                    <span class="px-4 py-2 rounded-lg bg-[#1a1a24] border border-gray-800 text-sm">
+                        <i class="fas fa-language text-red-500 mr-2"></i>BM • English • Mandarin
+                    </span>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="px-8 py-4 rounded-xl bg-gradient-to-r from-red-500 to-orange-500 font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300 hover:scale-105">
+                        Get In Touch
+                    </a>
+                    <a href="#reality" class="px-8 py-4 rounded-xl glass-effect font-semibold hover:bg-[#1a1a24] transition-all duration-300">
+                        View Credits
+                    </a>
+                </div>
+            </div>
+            
+            <div class="relative animate-fade-in" style="animation-delay: 0.2s">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-500 blur-3xl opacity-20 rounded-3xl"></div>
+                    <div class="relative glass-effect rounded-3xl p-8 border border-gray-800">
+                        <h3 class="heading text-lg font-bold mb-6 flex items-center">
+                            <i class="fas fa-calendar-check text-red-500 mr-3"></i>
+                            Availability Status
+                        </h3>
+                        <div id="availability-widget" contenteditable="true" class="min-h-[180px] p-5 rounded-xl bg-[#0a0a0d] border border-gray-800 text-gray-300 leading-relaxed focus:border-red-500 transition-colors">
+                            Click to edit availability...
+                        </div>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-500">
+                            <span><i class="fas fa-info-circle mr-1"></i>Auto-saves locally</span>
+                            <button id="clear-availability" class="hover:text-red-400 transition-colors">
+                                <i class="fas fa-trash-alt mr-1"></i>Clear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-16 text-center scroll-indicator">
+            <a href="#about" class="inline-block text-gray-500 hover:text-red-500 transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 px-5 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-red-500 font-semibold text-sm tracking-wider uppercase">About Me</span>
+            <h2 class="heading text-4xl md:text-5xl font-bold mt-3 mb-4">Behind The Scenes</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Multi-disciplinary production professional with experience across international reality shows, films, commercials and digital content.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="credit-card rounded-2xl p-8">
+                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center mb-6">
+                    <i class="fas fa-video text-2xl"></i>
+                </div>
+                <h3 class="heading text-xl font-bold mb-3">Production</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Experienced Production Assistant across reality TV, films and live sets. Onset coordination, cast management, locations and logistics.</p>
+            </div>
+            
+            <div class="credit-card rounded-2xl p-8">
+                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center mb-6">
+                    <i class="fas fa-lightbulb text-2xl"></i>
+                </div>
+                <h3 class="heading text-xl font-bold mb-3">Lighting</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Lighting Assistant and Gaffer for commercials, music videos and digital content. Technical crew with hands-on set experience.</p>
+            </div>
+            
+            <div class="credit-card rounded-2xl p-8">
+                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center mb-6">
+                    <i class="fas fa-map-marked-alt text-2xl"></i>
+                </div>
+                <h3 class="heading text-xl font-bold mb-3">Locations</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Location Assistant and Coordinator for international productions. Scout, permits, onset management and MIVS operations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Credits Section -->
+<section id="reality" class="py-20 px-5 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-red-500 font-semibold text-sm tracking-wider uppercase">Portfolio</span>
+            <h2 class="heading text-4xl md:text-5xl font-bold mt-3 mb-4">Production Credits</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Selected works across reality shows, films, commercials and digital platforms.</p>
+        </div>
+
+        <!-- Reality Shows & TV -->
+        <div class="mb-16">
+            <h3 class="heading text-2xl font-bold mb-8 flex items-center">
+                <div class="w-1 h-8 bg-gradient-to-b from-red-500 to-orange-500 mr-4 rounded-full"></div>
+                Reality Shows & TV
+            </h3>
+            <div class="grid md:grid-cols-2 gap-5">
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">Asia Express (Eccholine)</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">2024-2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">Local Prod Assistant</p>
+                    <p class="text-xs text-gray-500">Romania (2024), Mexico (2024), Hungary (2025), Poland (2026)</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">Money Road Italy</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">2025-2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">Temptation Crew</p>
+                    <p class="text-xs text-gray-500">Season 2 (2025), Season 3 (2026)</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">TBJP Season 6 Japan</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">2024</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Crafty</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">The Grand Tour UK</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">2025</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Crafty Assistant</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">Tempting Fortune UK S3</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Temptation Crew</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">Special Forces US S5</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Production Assistant</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">SAS UK S9</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Production Assistant</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">100 Places To Eat Russia</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Onset Location & MIVS Coordinator</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Films -->
+        <div class="mb-16">
+            <h3 class="heading text-2xl font-bold mb-8 flex items-center">
+                <div class="w-1 h-8 bg-gradient-to-b from-red-500 to-orange-500 mr-4 rounded-full"></div>
+                Film
+            </h3>
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">"Gold" Local Film</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">2024</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Production Assistant</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">"The Rescue" Singapore Film</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Key Production Assistant</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-lg">"Hemelrijk" Dutch Film</h4>
+                        <span class="text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Location Assistant</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Commercials -->
+        <div class="mb-16">
+            <h3 class="heading text-2xl font-bold mb-8 flex items-center">
+                <div class="w-1 h-8 bg-gradient-to-b from-red-500 to-orange-500 mr-4 rounded-full"></div>
+                Commercials
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-base mb-2">Shopee SPayLater</h4>
+                    <p class="text-sm text-gray-400">Prod Assistant</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-base mb-2">MyBIM</h4>
+                    <p class="text-sm text-gray-400">Lighting Assistant</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-base mb-2">Astro Radio</h4>
+                    <p class="text-sm text-gray-400">Location Assistant</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-base mb-2">XES Shoes Raya</h4>
+                    <p class="text-sm text-gray-400">Technical Crew</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music Videos -->
+        <div class="mb-16">
+            <h3 class="heading text-2xl font-bold mb-8 flex items-center">
+                <div class="w-1 h-8 bg-gradient-to-b from-red-500 to-orange-500 mr-4 rounded-full"></div>
+                Music Videos
+            </h3>
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-lg mb-2">Jiwa (Worldpeace Ent)</h4>
+                    <p class="text-sm text-gray-400">Lighting Assistant</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-lg mb-2">Imperfection (Film OST)</h4>
+                    <p class="text-sm text-gray-400">Assistant Director</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-lg mb-2">Ohana (Oneday Studio)</h4>
+                    <p class="text-sm text-gray-400">Lighting Assistant</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internet / Digital Content -->
+        <div>
+            <h3 class="heading text-2xl font-bold mb-8 flex items-center">
+                <div class="w-1 h-8 bg-gradient-to-b from-red-500 to-orange-500 mr-4 rounded-full"></div>
+                Internet / Digital Content
+            </h3>
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-lg mb-2">Terpaling Menantu</h4>
+                    <p class="text-sm text-gray-400 mb-1">TT Series</p>
+                    <p class="text-xs text-gray-500">Assistant Director</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-lg mb-2">AI New Gen</h4>
+                    <p class="text-sm text-gray-400 mb-1">YT Content</p>
+                    <p class="text-xs text-gray-500">Gaffer & Videographer</p>
+                </div>
+                
+                <div class="credit-card rounded-xl p-6">
+                    <h4 class="font-bold text-lg mb-2">"Red Lane : Unmatched"</h4>
+                    <p class="text-sm text-gray-400 mb-1">Shortfilm</p>
+                    <p class="text-xs text-gray-500">Gaffer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Gallery Section -->
+<section id="gallery" class="py-20 px-5 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-red-500 font-semibold text-sm tracking-wider uppercase">Gallery</span>
+            <h2 class="heading text-4xl md:text-5xl font-bold mt-3 mb-4">On Set</h2>
+            <p class="text-gray-400">Behind the scenes from recent productions</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="photo-tile">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80" alt="Production Set">
+                <div class="photo-overlay">
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <p class="text-sm font-semibold">International Production</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photo-tile">
+                <img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=800&q=80" alt="Film Set">
+                <div class="photo-overlay">
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <p class="text-sm font-semibold">Location Work</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photo-tile">
+                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80" alt="Lighting Setup">
+                <div class="photo-overlay">
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <p class="text-sm font-semibold">Lighting Department</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 px-5 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-red-500 font-semibold text-sm tracking-wider uppercase">Contact</span>
+            <h2 class="heading text-4xl md:text-5xl font-bold mt-3 mb-4">Let's Work Together</h2>
+            <p class="text-gray-400">Available for international and local productions</p>
+        </div>
+        
+        <div class="grid lg:grid-cols-5 gap-8">
+            <div class="lg:col-span-3 glass-effect rounded-3xl p-8 md:p-12">
+                <h3 class="heading text-2xl font-bold mb-8">Get In Touch</h3>
+                <div class="space-y-6">
+                    <a href="tel:+60127180424" class="flex items-center gap-5 p-5 rounded-xl bg-[#0a0a0d] border border-gray-800 hover:border-red-500 transition-all group">
+                        <div class="w-14 h-14 rounded-xl bg-red-500/10 flex items-center justify-center group-hover:bg-red-500/20 transition-colors">
+                            <i class="fas fa-phone text-red-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">Phone</p>
+                            <p class="font-semibold text-lg">+60 12-718 0424</p>
+                        </div>
+                    </a>
+                    
+                    <a href="mailto:syamilhammad.work@gmail.com" class="flex items-center gap-5 p-5 rounded-xl bg-[#0a0a0d] border border-gray-800 hover:border-orange-500 transition-all group">
+                        <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center group-hover:bg-orange-500/20 transition-colors">
+                            <i class="fas fa-envelope text-orange-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">Email</p>
+                            <p class="font-semibold text-lg">syamilhammad.work@gmail.com</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://instagram.com/yb.syamil" target="_blank" class="flex items-center gap-5 p-5 rounded-xl bg-[#0a0a0d] border border-gray-800 hover:border-red-500 transition-all group">
+                        <div class="w-14 h-14 rounded-xl bg-red-500/10 flex items-center justify-center group-hover:bg-red-500/20 transition-colors">
+                            <i class="fab fa-instagram text-red-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">Instagram</p>
+                            <p class="font-semibold text-lg">@yb.syamil</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.imdb.com/name/nm17521627/" target="_blank" class="flex items-center gap-5 p-5 rounded-xl bg-[#0a0a0d] border border-gray-800 hover:border-orange-500 transition-all group">
+                        <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center group-hover:bg-orange-500/20 transition-colors">
+                            <i class="fab fa-imdb text-orange-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">IMDb</p>
+                            <p class="font-semibold text-lg">Syamil Hammad</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2">
+                <div class="glass-effect rounded-3xl p-8 text-center sticky top-24">
+                    <h3 class="heading text-xl font-bold mb-6">Scan to Connect</h3>
+                    <div class="bg-white p-6 rounded-2xl inline-block mb-6">
+                        <img src="data:image/png;base64,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" alt="Instagram QR Code" class="w-48 h-48 mx-auto">
+                    </div>
+                    <p class="text-gray-400 text-sm">Scan with your camera to follow on Instagram</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-gray-900 py-8 px-5 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-bold heading text-lg mb-1">SYAMIL HAMMAD</p>
+                <p class="text-gray-500 text-sm">Production • Lighting • Locations</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-gray-500 text-sm">© 2024 Syamil Hammad. All rights reserved.</p>
+                <p class="text-gray-600 text-xs mt-1">Malaysia-based | International Productions</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+    
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        });
+    });
+    
+    // Availability Widget with localStorage
+    const availabilityWidget = document.getElementById('availability-widget');
+    const clearBtn = document.getElementById('clear-availability');
+    const STORAGE_KEY = 'syamil-availability-status';
+    
+    // Load saved content
+    const savedContent = localStorage.getItem(STORAGE_KEY);
+    if (savedContent) {
+        availabilityWidget.textContent = savedContent;
+    } else {
+        availabilityWidget.textContent = 'Available for bookings in Q1 2026\n\nCurrently on: Post-production break\nNext available: January 2026\n\nOpen to: International reality shows, Films, Commercials';
+    }
+    
+    // Save on input with debounce
+    let saveTimeout;
+    availabilityWidget.addEventListener('input', () => {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+            localStorage.setItem(STORAGE_KEY, availabilityWidget.textContent);
+        }, 500);
+    });
+    
+    // Clear button
+    clearBtn.addEventListener('click', () => {
+        if (confirm('Clear availability status?')) {
+            availabilityWidget.textContent = '';
+            localStorage.removeItem(STORAGE_KEY);
+        }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offset = 80;
+                const targetPosition = target.offsetTop - offset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Active nav link highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active', 'text-white');
+            link.classList.add('text-gray-300');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active', 'text-white');
+                link.classList.remove('text-gray-300');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
